@@ -32,13 +32,13 @@ plt.savefig("artifacts/plots/class_balance.png")
 plt.close()
 
 # Histograms
-df.hist(figsize=(12,10))
+df.hist(figsize=(12, 10))
 plt.tight_layout()
 plt.savefig("artifacts/plots/histograms.png")
 plt.close()
 
 # Correlation heatmap
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(10, 8))
 sns.heatmap(df.corr(), cmap="coolwarm")
 plt.savefig("artifacts/plots/correlation.png")
 plt.close()
