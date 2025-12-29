@@ -8,50 +8,40 @@ on:
 jobs:
   lint-test-train:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: heart-disease-mlops
 
     steps:
-      # 1. Checkout repository
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Setup Python
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      # 3. Install dependencies + project
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
           pip install -e .
 
-      # 4. Linting
-      - name: Lint code with flake8
-        run: |
-          flake8 src/
+      - name: Lint
+        run: flake8 src/
 
-      # 5. Unit tests
-      - name: Run unit tests
-        run: |
-          pytest
+      - name: Run tests
+        run: pytest
 
-      # 6. Model training (integration step)
-      - name: Run training pipeline
-        run: |
-          python src/train.py
+      - name: Train model
+        run: python src/train.py
 
-      # 7. Upload MLflow artifacts
       - name: Upload MLflow artifacts
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-artifacts
-          path: mlruns/
+          path: heart-disease-mlops/mlruns/
 
-      # 8. Upload plots (EDA artifacts)
       - name: Upload plots
         uses: actions/upload-artifact@v4
         with:
           name: eda-plots
-          path: artifacts/plots/
+          path: heart-disease-mlops/artifacts/plots/
