@@ -1,4 +1,6 @@
 import pandas as pd
+from pathlib import Path
+
 import mlflow
 import mlflow.sklearn
 
@@ -15,15 +17,31 @@ from sklearn.metrics import (
 
 from src.utils import build_preprocessor
 
-# --------------------------------------------------
-# MLflow setup (CI-safe)
-# --------------------------------------------------
-mlflow.set_tracking_uri("file:./mlruns")
-mlflow.set_experiment("Heart Disease Prediction")
+# ---------------------------------------------------------------------
+# MLflow setup (CI-SAFE & PORTABLE)
+# ---------------------------------------------------------------------
+TRACKING_DIR = Path("mlruns").resolve()
+TRACKING_DIR.mkdir(exist_ok=True)
 
-# --------------------------------------------------
+mlflow.set_tracking_uri(f"file:{TRACKING_DIR}")
+
+EXPERIMENT_NAME = "Heart Disease Prediction CI"
+
+experiment = mlflow.get_experiment_by_name(EXPERIMENT_NAME)
+
+if experiment is None:
+    experiment_id = mlflow.create_experiment(
+        EXPERIMENT_NAME,
+        artifact_location=f"file:{TRACKING_DIR / EXPERIMENT_NAME}"
+    )
+else:
+    experiment_id = experiment.experiment_id
+
+mlflow.set_experiment(EXPERIMENT_NAME)
+
+# ---------------------------------------------------------------------
 # Load data
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 df = pd.read_csv("data/heart.csv")
 
 X = df.drop("target", axis=1)
@@ -37,14 +55,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y,
 )
 
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 # Preprocessing
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 preprocessor = build_preprocessor(X.columns.tolist())
 
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 # Models
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 models = {
     "LogisticRegression": LogisticRegression(max_iter=1000),
     "RandomForest": RandomForestClassifier(
@@ -54,9 +72,9 @@ models = {
     ),
 }
 
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 # Training loop
-# --------------------------------------------------
+# ---------------------------------------------------------------------
 for name, model in models.items():
     with mlflow.start_run(run_name=name):
         pipeline = Pipeline(
@@ -80,6 +98,7 @@ for name, model in models.items():
             }
         )
 
+        # Log model artifact (CI-safe)
         mlflow.sklearn.log_model(pipeline, "model")
 
-print("Training completed")
+print("Training completed successfully")

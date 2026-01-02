@@ -2,20 +2,23 @@ name: MLOps CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
 
 jobs:
   lint-test-train:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: heart-disease-mlops
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
@@ -31,17 +34,35 @@ jobs:
       - name: Run tests
         run: pytest
 
+      # -----------------------------
+      # IMPORTANT: Prepare directories
+      # -----------------------------
+      - name: Prepare MLflow directory
+        run: mkdir -p mlruns
+
+      # -----------------------------
+      # IMPORTANT: Generate dataset
+      # -----------------------------
+      - name: Run EDA
+        run: python src/eda.py
+
+      # -----------------------------
+      # Train model
+      # -----------------------------
       - name: Train model
         run: python src/train.py
 
+      # -----------------------------
+      # Upload artifacts
+      # -----------------------------
       - name: Upload MLflow artifacts
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-artifacts
-          path: heart-disease-mlops/mlruns/
+          path: mlruns/
 
-      - name: Upload plots
+      - name: Upload EDA plots
         uses: actions/upload-artifact@v4
         with:
           name: eda-plots
-          path: heart-disease-mlops/artifacts/plots/
+          path: artifacts/plots/
