@@ -17,27 +17,13 @@ from sklearn.metrics import (
 
 from src.utils import build_preprocessor
 
+
 # ---------------------------------------------------------------------
-# MLflow setup (CI-SAFE & PORTABLE)
+# MLflow setup (CI-SAFE, STABLE)
 # ---------------------------------------------------------------------
-TRACKING_DIR = Path("mlruns").resolve()
-TRACKING_DIR.mkdir(exist_ok=True)
+mlflow.set_tracking_uri("file:./mlruns")
+mlflow.set_experiment("heart_disease_ci")  # IMPORTANT: no spaces
 
-mlflow.set_tracking_uri(f"file:{TRACKING_DIR}")
-
-EXPERIMENT_NAME = "Heart Disease Prediction CI"
-
-experiment = mlflow.get_experiment_by_name(EXPERIMENT_NAME)
-
-if experiment is None:
-    experiment_id = mlflow.create_experiment(
-        EXPERIMENT_NAME,
-        artifact_location=f"file:{TRACKING_DIR / EXPERIMENT_NAME}"
-    )
-else:
-    experiment_id = experiment.experiment_id
-
-mlflow.set_experiment(EXPERIMENT_NAME)
 
 # ---------------------------------------------------------------------
 # Load data
@@ -55,10 +41,12 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y,
 )
 
+
 # ---------------------------------------------------------------------
 # Preprocessing
 # ---------------------------------------------------------------------
 preprocessor = build_preprocessor(X.columns.tolist())
+
 
 # ---------------------------------------------------------------------
 # Models
@@ -71,6 +59,7 @@ models = {
         random_state=42,
     ),
 }
+
 
 # ---------------------------------------------------------------------
 # Training loop
@@ -98,7 +87,7 @@ for name, model in models.items():
             }
         )
 
-        # Log model artifact (CI-safe)
-        mlflow.sklearn.log_model(pipeline, "model")
+        # SAFE in CI
+        mlflow.sklearn.log_model(pipeline, artifact_path="model")
 
 print("Training completed successfully")
