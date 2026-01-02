@@ -15,13 +15,11 @@ from sklearn.metrics import (
 
 from src.utils import build_preprocessor
 
-
 # --------------------------------------------------
 # MLflow setup (CI-safe)
 # --------------------------------------------------
 mlflow.set_tracking_uri("file:./mlruns")
 mlflow.set_experiment("Heart Disease Prediction")
-
 
 # --------------------------------------------------
 # Load data
@@ -39,12 +37,10 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y,
 )
 
-
 # --------------------------------------------------
 # Preprocessing
 # --------------------------------------------------
 preprocessor = build_preprocessor(X.columns.tolist())
-
 
 # --------------------------------------------------
 # Models
@@ -57,7 +53,6 @@ models = {
         random_state=42,
     ),
 }
-
 
 # --------------------------------------------------
 # Training loop
