@@ -68,11 +68,11 @@ async def log_requests(request: Request, call_next):
 
 
 # ------------------------------------------------------------------
-# MLflow setup (SAFE for Docker/K8s)
+# MLflow setup
 # ------------------------------------------------------------------
 mlflow.set_tracking_uri("file:///app/mlruns")
 
-# Create experiment if it does not exist (IMPORTANT FIX)
+# Create experiment if it does not exist
 mlflow.set_experiment(EXPERIMENT_NAME)
 
 # ------------------------------------------------------------------
