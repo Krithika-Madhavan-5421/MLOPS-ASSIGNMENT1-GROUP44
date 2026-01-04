@@ -1,5 +1,14 @@
 # Heart Disease Risk Prediction: An End-to-End MLOps Pipeline
 
+| S.No | Register Number | Name                              | Contribution |
+|------|-----------------|-----------------------------------|--------------|
+| 1    | 2024aa05421     | Krithika Madhavan                 | 100%         |
+| 2    | 2024aa05435     | Yarragondla Rugmangadha Reddy     | 100%         |
+| 3    | 2024aa05423     | Payel Karmakar                    | 100%         |
+| 4    | 2024aa05870     | Deepak Sindhu                     | 100%         |
+| 5    | 2024ab05227     | PARAB PRATHAMESH PRAFULLA PRADNYA | 100%         |
+
+
 ## 1. Project Overview
 
 - This project implements an end-to-end MLOps pipeline for predicting the presence of heart disease using patient health data. The objective is to design, build, and deploy a scalable and reproducible machine learning solution by applying modern MLOps practices across the entire model lifecycle.
