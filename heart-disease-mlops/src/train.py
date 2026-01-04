@@ -14,7 +14,7 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-from src.utils import build_preprocessor
+from utils import build_preprocessor
 
 
 # ---------------------------------------------------------------------
