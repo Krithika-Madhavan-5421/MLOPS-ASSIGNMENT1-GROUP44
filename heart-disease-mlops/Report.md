@@ -296,19 +296,19 @@ The overall system architecture of the project is shown below:
 A CI/CD pipeline was implemented using GitHub Actions. The pipeline is triggered automatically on pushes and pull requests and performs the following steps:
 
 1. Code checkout
-   ![Checkout Screenshot.png](screenshots/Checkout Screenshot.jpg)
+   ![Checkout Screenshot.jpg](screenshots/Checkout Screenshot.jpg)
 2. Dependency installation
-   ![Install Dependencies Screenshot.png](screenshots/Install Dependencies Screenshot.jpg)
+   ![Install Dependencies Screenshot.jpg](screenshots/Install Dependencies Screenshot.jpg)
 3. Code linting using flake8
-   ![Lint Screenshot.png](screenshots/Lint Screenshot.jpg)
+   ![Lint Screenshot.jpg](screenshots/Lint Screenshot.jpg)
 4. Unit testing using pytest
-   ![Test Screenshot.png](screenshots/Test Screenshot.jpg)
+   ![Test Screenshot.jpg](screenshots/Test Screenshot.jpg)
 5. Data preparation and EDA execution
-   ![EDA Screenshot.png](screenshots/EDA Screenshot.jpg)
+   ![EDA Screenshot.jpg](screenshots/EDA Screenshot.jpg)
 6. Model training
-   ![Train Screenshot.png](screenshots/Train Screenshot.jpg)
+   ![Train Screenshot.jpg](screenshots/Train Screenshot.jpg)
 7. Artifact upload (MLflow runs and plots)
-   ![Artifact Upload Screenshot.png](screenshots/Artifact Upload Screenshot.jpg)
+   ![Artifact Upload Screenshot.jpg](screenshots/Artifact Upload Screenshot.jpg)
 
 Screenshots of successful pipeline executions and uploaded artifacts are included.
 
