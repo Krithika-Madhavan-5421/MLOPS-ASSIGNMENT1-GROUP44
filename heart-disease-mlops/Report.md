@@ -259,7 +259,7 @@ For each training run, MLflow logs:
 
 - Separate experiments were maintained for CI-based training to ensure portability and avoid environment-specific conflicts.
   - **Figure 4.1:** MLflow experiment overview
-    - ![MLFlow Prediction Screenshot.jpg](screenshots/MLFlow Prediction Screenshot.jpg)
+    - ![MLFlow Prediction Screenshot.jpg](screenshots/MLFlow_Prediction_Screenshot.jpg)
 - Each model run is stored as an independent MLflow run, enabling easy comparison between different models.
     - **Random Forest Model**
       - ![MLFlow Random Forest Screenshot.jpg](screenshots/MLflow Random Forest Screenshot.jpg)
