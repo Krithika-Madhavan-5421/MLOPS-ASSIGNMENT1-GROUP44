@@ -262,12 +262,12 @@ For each training run, MLflow logs:
     - ![MLFlow Prediction Screenshot.jpg](screenshots/MLFlow_Prediction_Screenshot.jpg)
 - Each model run is stored as an independent MLflow run, enabling easy comparison between different models.
     - **Random Forest Model**
-      - ![MLFlow Random Forest Screenshot.jpg](screenshots/MLflow Random Forest Screenshot.jpg)
-      - ![MLflow Random Forest Metrics Screenshot.png](screenshots/MLflow Random Forest Metrics Screenshot.jpg)
-      - ![MLflow Random Forest Metrics1 Screenshot.png](screenshots/MLflow Random Forest Metrics1 Screenshot.jpg)
+      - ![MLFlow Random Forest Screenshot.jpg](screenshots/MLflow_Random_Forest_Screenshot.jpg)
+      - ![MLflow Random Forest Metrics Screenshot.png](screenshots/MLflow_Random_Forest_Metrics_Screenshot.jpg)
+      - ![MLflow Random Forest Metrics1 Screenshot.png](screenshots/MLflow_Random_Forest_Metrics1_Screenshot.jpg)
     - **Logistic Regression Model**
-      - ![MLFlow Logistics Regression Metrics Screenshot.jpg](screenshots/MLflow Logistics Reg Metrics Screenshot.jpg)
-      - ![MLFlow Logistics Regression Metrics Screenshot.jpg](screenshots/MLFlow Logistics Reg Metrics1 Screenshot.jpg)
+      - ![MLFlow Logistics Regression Metrics Screenshot.jpg](screenshots/MLflow_Logistics_Reg_Metrics_Screenshot.jpg)
+      - ![MLFlow Logistics Regression Metrics Screenshot.jpg](screenshots/MLFlow_Logistics_Reg_Metrics1_Screenshot.jpg)
 ### 4.3 Benefits
 
 Using MLflow enables:
@@ -296,19 +296,19 @@ The overall system architecture of the project is shown below:
 A CI/CD pipeline was implemented using GitHub Actions. The pipeline is triggered automatically on pushes and pull requests and performs the following steps:
 
 1. Code checkout
-   ![Checkout Screenshot.jpg](screenshots/Checkout Screenshot.jpg)
+   ![Checkout Screenshot.jpg](screenshots/Checkout_Screenshot.jpg)
 2. Dependency installation
-   ![Install Dependencies Screenshot.jpg](screenshots/Install Dependencies Screenshot.jpg)
+   ![Install Dependencies Screenshot.jpg](screenshots/Install_Dependencies_Screenshot.jpg)
 3. Code linting using flake8
-   ![Lint Screenshot.jpg](screenshots/Lint Screenshot.jpg)
+   ![Lint Screenshot.jpg](screenshots/Lint_Screenshot.jpg)
 4. Unit testing using pytest
-   ![Test Screenshot.jpg](screenshots/Test Screenshot.jpg)
+   ![Test Screenshot.jpg](screenshots/Test_Screenshot.jpg)
 5. Data preparation and EDA execution
-   ![EDA Screenshot.jpg](screenshots/EDA Screenshot.jpg)
+   ![EDA Screenshot.jpg](screenshots/EDA_Screenshot.jpg)
 6. Model training
-   ![Train Screenshot.jpg](screenshots/Train Screenshot.jpg)
+   ![Train Screenshot.jpg](screenshots/Train_Screenshot.jpg)
 7. Artifact upload (MLflow runs and plots)
-   ![Artifact Upload Screenshot.jpg](screenshots/Artifact Upload Screenshot.jpg)
+   ![Artifact Upload Screenshot.jpg](screenshots/Artifact_Upload_Screenshot.jpg)
 
 Screenshots of successful pipeline executions and uploaded artifacts are included.
 
@@ -321,7 +321,7 @@ Deployment steps include:
 ```bash
 docker build -t heart-disease-api:latest .
 ```
-![Docker Build Screenshot.png](screenshots/Docker Build Screenshot.jpg)
+![Docker Build Screenshot.png](screenshots/Docker_Build_Screenshot.jpg)
 
 - Deploying the application using Kubernetes manifests
    ```bash
@@ -332,7 +332,7 @@ docker build -t heart-disease-api:latest .
    minikube status
    ```
 
-   ![Minikube Screenshot.png](screenshots/Minikube Screenshot.jpg)
+   ![Minikube Screenshot.png](screenshots/Minikube_Screenshot.jpg)
 
    ```bash
    # Apply the manifests
@@ -342,14 +342,14 @@ docker build -t heart-disease-api:latest .
    kubectl apply -f manifests/service.yaml
    ```
 
-   ![Apply Manifest Screenshot.png](screenshots/Apply Manifest Screenshot.jpg)
+   ![Apply Manifest Screenshot.png](screenshots/Apply_Manifest_Screenshot.jpg)
 
    ```bash
    # Check the pods 
    kubectl get pods 
    ```
 
-   ![Kubectl Pod Screenshot.png](screenshots/Kubectl Pod Screenshot.jpg)
+   ![Kubectl Pod Screenshot.png](screenshots/Kubectl_Pod_Screenshot.jpg)
 
 
 - Exposing the service using a NodePort
@@ -359,25 +359,25 @@ docker build -t heart-disease-api:latest .
    # Get Endpoint
    minikube service heart-disease-service --url
    ```
-   ![Endpoint Screenshot.png](screenshots/Endpoint Screenshot.jpg)
+   ![Endpoint Screenshot.png](screenshots/Endpoint_Screenshot.jpg)
 
 - Verifying the deployment via Swagger UI and API responses
 
-    ![Swagger Screenshot.png](screenshots/Swagger Screenshot.jpg)
-![API Screenshot.png](screenshots/API Screenshot.jpg)
+    ![Swagger Screenshot.png](screenshots/Swagger_Screenshot.jpg)
+![API Screenshot.png](screenshots/API_Screenshot.jpg)
 Screenshots of running pods, services, and API responses are included.
 
 - Monitoring and Logging:
   - Inference requests were monitored using Kubernetes pod logs, capturing request paths, response status, and latency.
   - MLflow was primarily used for training-time experiment tracking, while inference observability was handled via application logs.
       - MLFlow Metrics
-        - ![MLFlow Inference Screenshot.jpg](screenshots/MLFlow Inference Screenshot.jpg)
-        - ![MLFlow Inference Metrics Screenshot.jpg](screenshots/MLFlow Inference Metrics Screenshot.jpg)
+        - ![MLFlow Inference Screenshot.jpg](screenshots/MLFlow_Inference_Screenshot.jpg)
+        - ![MLFlow Inference Metrics Screenshot.jpg](screenshots/MLFlow_Inference_Metrics_Screenshot.jpg)
       - Kubectl Logs
-        - ![Kubectl Logs Screenshot.jpg](screenshots/Kubectl Logs Screenshot.jpg)
+        - ![Kubectl Logs Screenshot.jpg](screenshots/Kubectl_Logs_Screenshot.jpg)
 - Streamlit Inferencing
   - Streamlit is an UI interface for invoking the prediction service.
-    - ![Streamlit Screenshot.jpg](screenshots/Streamlit Screenshot.jpg)
+    - ![Streamlit Screenshot.jpg](screenshots/Streamlit_Screenshot.jpg)
 
 ### Access Instructions (for Local Testing)
 
