@@ -441,3 +441,6 @@ The complete source code, configuration files, CI/CD pipeline, and documentation
 This project demonstrates a complete end-to-end MLOps workflow, covering data preparation, model development, experiment tracking, CI/CD automation, containerized deployment, and production monitoring. By integrating industry-standard tools such as MLflow, Docker, Kubernetes, and GitHub Actions, the solution ensures reproducibility, scalability, and deployment readiness.
 
 The inclusion of an optional Streamlit interface further enhances usability, while the Kubernetes-based deployment simulates a real-world production environment. Overall, this project reflects best practices in modern MLOps and provides a strong foundation for deploying machine learning systems in production settings.
+
+### Video Demonstration Link:
+https://drive.google.com/file/d/1krQUMoG8Ufc1O5A3TJk-2_r4FcP1A-Kd/view?usp=sharing
